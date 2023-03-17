@@ -35,9 +35,40 @@ public class DBController {
                 Main.tree.add(cat);
             }
             results.first();
+            while (results.next()) {
+                Cat cat = Main.tree.getById(results.getInt("id"));
+                if (results.getInt("mother_id") != -1)  {
+                    cat.setMommy(Main.tree.getById(results.getInt("mother_id")));
+                }
+                if (results.getInt("father_id") != -1) {
+                    cat.setDaddy(Main.tree.getById(results.getInt("father_id")));
+                }
+
+                for (int childId: intsFromCSV(results.getString("children_ids_csv"))) {
+                    cat.addChild(Main.tree.getById(childId));
+                }
+
+            }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    private static LinkedList<Integer> intsFromCSV(String csv) {
+        LinkedList<Integer> ints = new LinkedList<>();
+        int currInt = 0;
+        for (char c: csv.toCharArray()) {
+            if (Character.isDigit(c)) {
+                currInt *= 10;
+                currInt += Character.getNumericValue(c);
+            }
+            else {
+                ints.add(currInt);
+                currInt = 0;
+            }
+        }
+        return ints;
+
     }
 }

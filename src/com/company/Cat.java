@@ -33,6 +33,16 @@ public class Cat {
         this.stackPane = new StackPane();
     }
 
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", father=" + father +
+                ", mother=" + mother +
+                '}';
+    }
+
     public LinkedList<Cat> getNotBreedableCats(int minDistance) {
         return getNotBreedableCats(minDistance, this, null);
     }

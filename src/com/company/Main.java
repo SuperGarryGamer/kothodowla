@@ -12,6 +12,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        DBController.getAllCats();
+        for (Cat c: tree.traverseInOrder()) {
+            System.out.println(c.toString());
+        }
     }
 }
