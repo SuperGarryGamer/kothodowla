@@ -36,14 +36,14 @@ public class DBController {
                 cats.add(cat);
             }
             results.first();
-            // wstawiamy dzieci do kotów i koty do dzieci
+            // wstawiamy koty w drzewo
             while (results.next()) {
 
             }
 
         } catch (SQLException throwables) {
-            return new LinkedList<Cat>();
             throwables.printStackTrace();
         }
+        return null; //TODO
     }
 }
