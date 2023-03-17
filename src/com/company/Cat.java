@@ -33,6 +33,18 @@ public class Cat {
         this.stackPane = new StackPane();
     }
 
+    public LinkedList<Cat> getNotBreedableCats(int minDistance) {
+        return getNotBreedableCats(minDistance, this, null);
+    }
+
+    private LinkedList<Cat> getNotBreedableCats(int minDistance, Cat currCat, Cat prevCat) {
+        for (Cat cat: children) {
+            //TODO
+            //return getNotBreedableCats(minDistance);
+        }
+        return null;
+    }
+
     public void addChild(Cat child) {
         this.children.add(child);
     }
