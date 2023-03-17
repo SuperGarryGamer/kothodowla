@@ -25,25 +25,19 @@ public class DBController {
         }
     }
 
-    public static LinkedList<Cat> getAllCats() {
+    public static void getAllCats() {
         try {
-            LinkedList<Cat> cats = new LinkedList<Cat>();
             Connection conn = connect();
             Statement statement = conn.createStatement();
             ResultSet results = statement.executeQuery("select * from cats");
             while (results.next()) {
                 Cat cat = new Cat(results.getString("name"), results.getInt("id"));
-                cats.add(cat);
+                Main.tree.add(cat);
             }
             results.first();
-            // wstawiamy koty w drzewo
-            while (results.next()) {
-
-            }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return null; //TODO
     }
 }

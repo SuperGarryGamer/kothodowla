@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.LinkedList;
+
 public class CatBST {
     static private class Node {
         Cat cat;
@@ -65,5 +67,15 @@ public class CatBST {
         else {
             return null;
         }
+    }
+    public LinkedList<Cat> traverseInOrder(Node currNode) {
+        LinkedList<Cat> out = new LinkedList<Cat>();
+        if (currNode == null) {return out;}
+
+        out.addAll(traverseInOrder(currNode.left));
+        out.add(currNode.cat);
+        out.addAll(traverseInOrder(currNode.right));
+
+        return out;
     }
 }
