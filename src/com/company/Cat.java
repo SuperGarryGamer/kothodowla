@@ -1,6 +1,9 @@
 package com.company;
 
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 import java.util.LinkedList;
 
@@ -8,6 +11,9 @@ public class Cat {
     private String name;
     private int id;
     private StackPane stackPane;
+
+    private int sizeX = 50;
+    private int sizeY = 20;
 
     public StackPane getStackPane() {
         return stackPane;
@@ -45,5 +51,22 @@ public class Cat {
 
     public String getName() {
         return name;
+    }
+
+    public void setStackPane(StackPane stackPane) {
+        this.stackPane = stackPane;
+        Rectangle base = new Rectangle(sizeX, sizeY);
+        base.setFill(Color.GRAY);
+        Text catName = new Text(name);
+        Rectangle transparent = new Rectangle(sizeX, sizeY);
+        transparent.setFill(Color.TRANSPARENT);
+
+        stackPane.getChildren().add(base);
+        stackPane.getChildren().add(catName);
+        stackPane.getChildren().add(transparent);
+
+        transparent.setOnMouseClicked(event -> {
+
+        });
     }
 }
