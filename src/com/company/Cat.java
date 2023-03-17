@@ -10,6 +10,7 @@ import java.util.LinkedList;
 public class Cat {
     private String name;
     private int id;
+    private boolean female;
     private StackPane stackPane;
 
     private int sizeX = 50;
@@ -82,3 +83,10 @@ public class Cat {
         });
     }
 }
+
+
+
+
+
+// dont mind this v
+// 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
