@@ -30,6 +30,7 @@ public class Cat {
     public Cat(String name, int id) {
         this.name = name;
         this.id = id;
+        this.children = new LinkedList<Cat>();
         this.stackPane = new StackPane();
     }
 

@@ -12,6 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        tree = new CatBST();
         DBController.getAllCats();
         for (Cat c: tree.traverseInOrder()) {
             System.out.println(c.toString());
