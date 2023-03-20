@@ -13,10 +13,10 @@ public class MainController {
     private TextField name;
 
     @FXML
-    private ComboBox<?> mother;
+    private ComboBox<Cat> mother;
 
     @FXML
-    private ComboBox<?> father;
+    private ComboBox<Cat> father;
 
     @FXML
     private CheckBox isFemale;
@@ -26,6 +26,12 @@ public class MainController {
 
     @FXML
     void add(ActionEvent event) {
+        Cat cat = new Cat(name.getText(), Main.tree.traverseInOrder().size() - 1);
+        cat.setDaddy(father.getSelectionModel().getSelectedItem());
+        cat.setMommy(mother.getSelectionModel().getSelectedItem());
+        mother.setValue(null);
+        father.setValue(null);
+        name.clear();
 
     }
 

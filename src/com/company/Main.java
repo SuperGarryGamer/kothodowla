@@ -16,5 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         tree = new CatBST();
         DBController.getAllCats();
+
+
     }
 }
