@@ -50,10 +50,18 @@ public class Cat {
     }
 
     private LinkedList<Cat> getNotBreedableCats(int minDistance, Cat currCat, Cat prevCat) {
-        for (Cat cat: children) {
-            //TODO
-            //return getNotBreedableCats(minDistance);
+        LinkedList<Cat> cats = new LinkedList<Cat>();
+        if (minDistance == 0) {
+            cats.add(this);
+            return cats;
         }
+        for (Cat cat: children) {
+            if (!cats.contains(cat)) cats.addAll(cat.getNotBreedableCats(minDistance - 1, cat, this));
+        }
+
+        if (!cats.contains(mother) && mother != null) cats.addAll(mother.getNotBreedableCats(minDistance - 1, mother, this));
+        if (!cats.contains(father) && father != null) cats.addAll(father.getNotBreedableCats(minDistance - 1, father, this));
+
         return null;
     }
 
