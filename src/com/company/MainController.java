@@ -26,12 +26,14 @@ public class MainController {
 
     @FXML
     void add(ActionEvent event) {
-        Cat cat = new Cat(name.getText(), Main.tree.traverseInOrder().size() - 1);
+        Cat cat = new Cat(name.getText(), Main.tree.traverseInOrder().size());
         cat.setDaddy(father.getSelectionModel().getSelectedItem());
         cat.setMommy(mother.getSelectionModel().getSelectedItem());
         mother.setValue(null);
         father.setValue(null);
         name.clear();
+
+        System.out.println(cat);
 
     }
 
