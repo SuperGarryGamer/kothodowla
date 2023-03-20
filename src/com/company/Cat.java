@@ -79,7 +79,7 @@ public class Cat {
         stackPane.getChildren().add(transparent);
 
         transparent.setOnMouseClicked(event -> {
-
+            //
         });
     }
 }
