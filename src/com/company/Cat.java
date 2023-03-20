@@ -90,7 +90,9 @@ public class Cat {
         stackPane.getChildren().add(transparent);
 
         transparent.setOnMouseClicked(event -> {
-            //
+            for (Cat cat : this.getNotBreedableCats(4)){
+                ((Rectangle) cat.stackPane.getChildren().get(0)).setFill(Color.RED);
+            }
         });
     }
 }
