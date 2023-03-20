@@ -6,14 +6,12 @@ import javafx.stage.Stage;
 public class Main extends Application {
     public static CatBST tree;
 
-
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Meow");
-        primaryStage.show();
+
     }
 }

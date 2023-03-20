@@ -68,6 +68,10 @@ public class CatBST {
             return null;
         }
     }
+
+    public LinkedList<Cat> traverseInOrder() {
+        return traverseInOrder(root);
+    }
     public LinkedList<Cat> traverseInOrder(Node currNode) {
         LinkedList<Cat> out = new LinkedList<Cat>();
         if (currNode == null) {return out;}

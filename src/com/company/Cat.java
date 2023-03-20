@@ -31,7 +31,18 @@ public class Cat {
     public Cat(String name, int id) {
         this.name = name;
         this.id = id;
+        this.children = new LinkedList<Cat>();
         this.stackPane = new StackPane();
+    }
+
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", father=" + father +
+                ", mother=" + mother +
+                '}';
     }
 
     public LinkedList<Cat> getNotBreedableCats(int minDistance) {
