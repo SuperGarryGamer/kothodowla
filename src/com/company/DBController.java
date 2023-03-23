@@ -1,5 +1,6 @@
 package com.company;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.LinkedList;
 
@@ -62,7 +63,7 @@ public class DBController {
                 cat.getFather().getChildren().add(cat);
                 fatherAddChildren.setInt(2, cat.getFather().getId());
                 String fatherChildren = "";
-                for (Cat c: cat.getFather().getChildren()) {
+                for (Cat c : cat.getFather().getChildren()) {
                     fatherChildren += String.valueOf(c.getId()) + ",";
                 }
                 fatherAddChildren.setString(1, fatherChildren);
@@ -76,7 +77,7 @@ public class DBController {
                 System.out.println(cat.getMother().getChildren().toString());
                 motherAddChildren.setInt(2, cat.getMother().getId());
                 String motherChildren = "";
-                for (Cat c: cat.getMother().getChildren()) {
+                for (Cat c : cat.getMother().getChildren()) {
                     motherChildren += String.valueOf(c.getId()) + ",";
                 }
                 motherAddChildren.setString(1, motherChildren);

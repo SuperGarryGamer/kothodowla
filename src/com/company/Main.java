@@ -10,6 +10,8 @@ import java.util.LinkedList;
 
 public class Main extends Application {
     public static CatBST tree;
+    public static Parent root;
+    public static FXMLLoader loader;
 
     public static void main(String[] args) {
         launch(args);
@@ -19,8 +21,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         tree = new CatBST();
         DBController.getAllCats();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainLayout.fxml"));
-        Parent root = loader.load();
+        loader = new FXMLLoader(getClass().getResource("MainLayout.fxml"));
+        root = loader.load();
         Scene scene = new Scene(root);
 
         primaryStage.setScene(scene);
