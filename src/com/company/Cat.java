@@ -115,8 +115,14 @@ public class Cat {
         stackPane.getChildren().add(transparent);
 
         transparent.setOnMouseClicked(event -> {
-            for (Cat cat : this.getNotBreedableCats()){
-                ((Rectangle) cat.stackPane.getChildren().get(0)).setFill(Color.RED);
+            LinkedList<Cat> nonBreedable = this.getNotBreedableCats();
+            for (Cat c: Main.tree.traverseInOrder()) {
+                if (nonBreedable.contains(c)) {
+                    ((Rectangle) c.stackPane.getChildren().get(0)).setFill(Color.RED);
+                }
+                else {
+                    ((Rectangle) c.stackPane.getChildren().get(0)).setFill(Color.GRAY);
+                }
             }
         });
     }
