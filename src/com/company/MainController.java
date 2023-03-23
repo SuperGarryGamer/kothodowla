@@ -50,6 +50,16 @@ public class MainController {
         DBController.addCat(cat);
         name.clear();
 
+        mother.getItems().clear();
+        father.getItems().clear();
+
+        mother.getItems().add(null);
+        father.getItems().add(null);
+        for (Cat c: Main.tree.traverseInOrder()) {
+            if (c.isFemale()) mother.getItems().add(c);
+            else father.getItems().add(c);
+        }
+
         System.out.println(cat);
 
     }
