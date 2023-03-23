@@ -21,6 +21,7 @@ public class DBController {
             ResultSet results = statement.executeQuery("select * from cats");
             while (results.next()) {
                 Cat cat = new Cat(results.getString("name"), results.getInt("id"));
+                cat.setFemale(results.getBoolean("isFemale"));
                 Main.tree.add(cat);
             }
             results = statement.executeQuery("select * from cats");
@@ -44,6 +45,50 @@ public class DBController {
         }
     }
 
+    public static void addCat(Cat cat) {
+        Connection conn = connect();
+        try {
+            Statement statement = conn.createStatement();
+            PreparedStatement pst = conn.prepareStatement("insert into cats values (?, ?, ?, ?, '', ?);");
+            pst.setInt(1, cat.getId());
+            pst.setString(2, cat.getName());
+            pst.setInt(3, cat.getMother() == null ? -1 : cat.getMother().getId());
+            System.out.println(cat.getFather());
+            pst.setInt(4, cat.getFather() == null ? -1 : cat.getFather().getId());
+            pst.setBoolean(5, cat.isFemale());
+
+            if (cat.getFather() != null) {
+                PreparedStatement fatherAddChildren = conn.prepareStatement("update cats set children_ids_csv = ? where id = ?");
+                cat.getFather().getChildren().add(cat);
+                fatherAddChildren.setInt(2, cat.getFather().getId());
+                String fatherChildren = "";
+                for (Cat c: cat.getFather().getChildren()) {
+                    fatherChildren += String.valueOf(c.getId()) + ",";
+                }
+                fatherAddChildren.setString(1, fatherChildren);
+                fatherAddChildren.execute();
+            }
+
+            if (cat.getMother() != null) {
+                PreparedStatement motherAddChildren = conn.prepareStatement("update cats set children_ids_csv = ? where id = ?");
+                System.out.println(cat.getMother().getChildren().toString());
+                cat.getMother().getChildren().add(cat);
+                System.out.println(cat.getMother().getChildren().toString());
+                motherAddChildren.setInt(2, cat.getMother().getId());
+                String motherChildren = "";
+                for (Cat c: cat.getMother().getChildren()) {
+                    motherChildren += String.valueOf(c.getId()) + ",";
+                }
+                motherAddChildren.setString(1, motherChildren);
+                motherAddChildren.execute();
+            }
+
+            pst.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     private static LinkedList<Integer> intsFromCSV(String csv) {
         LinkedList<Integer> ints = new LinkedList<>();
         if (csv == null) return ints;
@@ -58,6 +103,7 @@ public class DBController {
                 currInt = 0;
             }
         }
+        System.out.println(ints);
         return ints;
 
     }

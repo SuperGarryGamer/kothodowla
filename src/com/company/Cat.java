@@ -24,6 +24,14 @@ public class Cat {
         return id;
     }
 
+    public void setFemale(boolean female) {
+        this.female = female;
+    }
+
+    public boolean isFemale() {
+        return female;
+    }
+
     private Cat father;
     private Cat mother;
     private LinkedList<Cat> children;
@@ -37,12 +45,19 @@ public class Cat {
 
     @Override
     public String toString() {
-        return "Cat{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                ", father=" + father +
-                ", mother=" + mother +
-                '}';
+        return name;
+    }
+
+    public Cat getFather() {
+        return father;
+    }
+
+    public Cat getMother() {
+        return mother;
+    }
+
+    public LinkedList<Cat> getChildren() {
+        return children;
     }
 
     public LinkedList<Cat> getNotBreedableCats() {
